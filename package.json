@@ -1,0 +1,32 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --inspect index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DaoNgocAnh25092004/Nodejs_Blog.git"
+  },
+  "keywords": [
+    "blog",
+    "Ngoc_Anh",
+    "Ngoc_Anh_Blog",
+    "nodejs"
+  ],
+  "author": "Dao Ngoc Anh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DaoNgocAnh25092004/Nodejs_Blog/issues"
+  },
+  "homepage": "https://github.com/DaoNgocAnh25092004/Nodejs_Blog#readme",
+  "dependencies": {
+    "express": "^4.21.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
