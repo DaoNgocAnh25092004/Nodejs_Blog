@@ -21,14 +21,17 @@ app.engine(
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "resources/views"));
 
+// Routes home
 app.get("/", (req, res) => {
   res.render("home");
 });
 
+// Routes views
 app.get("/views", (req, res) => {
   res.render("views");
 });
 
+// In ra thông báo khi server chạy thành công trên cổng 3000
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
