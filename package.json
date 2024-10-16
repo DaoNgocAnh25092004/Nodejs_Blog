@@ -26,11 +26,15 @@
   "homepage": "https://github.com/DaoNgocAnh25092004/Nodejs_Blog#readme",
   "dependencies": {
     "express": "^4.21.1",
-    "express-handlebars": "^8.0.1"
+    "express-handlebars": "^8.0.1",
+    "mongoose": "^8.7.1"
   },
   "devDependencies": {
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
     "morgan": "^1.10.0",
     "nodemon": "^3.1.7",
+    "prettier": "^3.3.3",
     "sass": "^1.79.5"
   }
 }
