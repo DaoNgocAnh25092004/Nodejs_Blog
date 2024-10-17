@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
 const slug = require('mongoose-slug-updater');
-
-// Add slug to mongoose
-mongoose.plugin(slug);
+const mongooseDelete = require('mongoose-delete');
 
 // Create a new mongoose schema
 const Schema = mongoose.Schema;
@@ -21,6 +19,15 @@ const Course = new Schema(
         timestamps: true,
     },
 );
+
+// Add slug to mongoose
+mongoose.plugin(slug);
+
+// Add mongoose-delete to Course
+Course.plugin(mongooseDelete, {
+    deletedAt: true, // Add a time deletedAt field to Course
+    overrideMethods: 'all',
+});
 
 // Export model 'Course' to use in other files
 module.exports = mongoose.model('Course', Course);

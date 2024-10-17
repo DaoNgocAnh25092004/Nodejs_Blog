@@ -41,7 +41,7 @@ class CoursesController {
             formData.image = `https://img.youtube.com/vi/${formData.videoId}/sddefault.jpg`;
             const course = new Course(formData);
             await course.save();
-            res.redirect('/courses');
+            res.redirect('/me/stored/courses');
         } catch (err) {
             next(err);
         }
@@ -66,6 +66,36 @@ class CoursesController {
             formData.image = `https://img.youtube.com/vi/${formData.videoId}/sddefault.jpg`;
             await Course.findByIdAndUpdate(req.params.id, formData);
             res.redirect('/me/stored/courses');
+        } catch (err) {
+            next(err);
+        }
+    }
+
+    // [DELETE] /courses/:id
+    async delete(req, res, next) {
+        try {
+            await Course.delete({ _id: req.params.id });
+            res.redirect('back');
+        } catch (err) {
+            next(err);
+        }
+    }
+
+    // [PATCH] /courses/:id/restore
+    async restore(req, res, next) {
+        try {
+            await Course.restore({ _id: req.params.id });
+            res.redirect('back');
+        } catch (err) {
+            next(err);
+        }
+    }
+
+    // [DELETE] /courses/:id/force
+    async deleteForce(req, res, next) {
+        try {
+            await Course.deleteOne({ _id: req.params.id });
+            res.redirect('back');
         } catch (err) {
             next(err);
         }

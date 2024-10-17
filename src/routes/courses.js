@@ -11,6 +11,12 @@ router.get('/:slug', coursesController.show);
 
 router.put('/:id', coursesController.update);
 
+router.delete('/:id', coursesController.delete);
+
+router.delete('/:id/force', coursesController.deleteForce);
+
+router.patch('/:id/restore', coursesController.restore);
+
 router.get('/:id/edit', coursesController.edit);
 
 router.get('/', coursesController.index);
