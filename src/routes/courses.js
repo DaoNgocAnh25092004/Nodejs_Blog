@@ -7,6 +7,9 @@ router.post('/store', coursesController.store);
 
 router.get('/create', coursesController.create);
 
+// should stand before /:id, /:slug
+router.post('/handle-form-actions', coursesController.handleFormActions);
+
 router.get('/:slug', coursesController.show);
 
 router.put('/:id', coursesController.update);

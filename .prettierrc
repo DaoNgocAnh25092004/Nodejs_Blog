@@ -2,7 +2,7 @@
     "arrowParens": "always",
     "bracketSameLine": false,
     "bracketSpacing": true,
-    "embeddedLanguageFormatting": "auto",
+    "embeddedLanguageFormatting": "off",
     "htmlWhitespaceSensitivity": "css",
     "insertPragma": false,
     "jsxSingleQuote": false,
@@ -20,7 +20,8 @@
         {
             "files": "*.hbs",
             "options": {
-                "parser": "glimmer"
+                "parser": "glimmer",
+                "embeddedLanguageFormatting": "off"
             }
         }
     ]
