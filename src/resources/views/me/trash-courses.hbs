@@ -24,7 +24,7 @@
                 </select>
             </div>
 
-            <button type='submit'  class='btn btn-primary btn-remove-select-box disabled' >Apply</button>
+            <button type='submit'  class='btn btn-primary btn-remove-select-box' disabled>Apply</button>
         </div>
     </div>
     <table class='table table-striped table-bordered'>
@@ -168,24 +168,16 @@
             });
         });
 
-        const form = document.querySelector('form[name="container-form"]');
         const btnRemoveSelectBox = document.querySelector('.btn-remove-select-box');
-
-        form.addEventListener('submit', (e) => {
-            const checkDisabled = btnRemoveSelectBox.classList.contains('disabled');
-            if (checkDisabled) {
-                e.preventDefault();
-            }
-        });
 
         // Check disable
         function renderCheckAllSubmitBtn() {
             const checkedCheckboxes = document.querySelectorAll('input[name="coursesIds[]"]:checked').length;
 
             if (checkedCheckboxes > 0) {
-                btnRemoveSelectBox.classList.remove('disabled');
+                btnRemoveSelectBox.removeAttribute('disabled');
             } else {
-                btnRemoveSelectBox.classList.add('disabled');
+                btnRemoveSelectBox.setAttribute('disabled', 'true');
             }
         }
     });
