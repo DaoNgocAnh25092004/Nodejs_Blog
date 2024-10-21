@@ -32,9 +32,18 @@
             <tr>
                 <th></th>
                 <th>Stt</th>
-                <th>Tên khóa học</th>
-                <th>Mô tả</th>
-                <th>Ngày tạo</th>
+                <th>
+                    <span>Tên khóa học</span>
+                    {{{sortTable 'name' _sort}}}
+                </th>
+                <th>
+                    <span>Mô tả</span>
+                    {{{sortTable 'description' _sort}}}
+                </th>
+                <th class="d-flex justify-content-between" style="width: 140px">
+                    <span>Ngày tạo</span>
+                    {{{sortTable 'createdAt' _sort}}}
+                </th>
                 <th></th>
             </tr>
         </thead>

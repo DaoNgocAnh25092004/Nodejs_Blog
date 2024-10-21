@@ -5,6 +5,9 @@ const handlebars = require('express-handlebars').engine;
 const moment = require('moment');
 const methodOverride = require('method-override');
 
+// Define path Middleware of function SortMiddleware
+const SortMiddleware = require('./app/middlewares/SortMiddleware');
+
 const app = express();
 const port = 3000;
 
@@ -20,11 +23,14 @@ db.connect();
 // Body parser
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Middleware: data to form submit from server
+// Middleware: data to form submit of form from server
 app.use(express.urlencoded({ extended: true }));
 
 // XMLHttpRequest, fetch, axios, ajax... to javascript from server
 app.use(express.json());
+
+// Custom middleware
+app.use(SortMiddleware);
 
 // HTTP logger
 // app.use(morgan("combined"));
@@ -40,6 +46,24 @@ app.engine(
         helpers: {
             sum: (a, b) => a + b,
             formatDate: (date, format) => moment(date).format(format),
+            sortTable: (field, sort) => {
+                const sortType = field === sort.column ? sort.type : 'default';
+                const icons = {
+                    default: 'fa-solid fa-arrows-up-down',
+                    asc: 'fa-solid fa-arrow-up-short-wide',
+                    desc: 'fa-solid fa-arrow-up-wide-short',
+                };
+                const types = {
+                    default: 'desc',
+                    asc: 'desc',
+                    desc: 'asc',
+                };
+                const icon = icons[sortType];
+                const type = types[sortType];
+                return `<a href="?_sort&column=${field}&type=${type}">
+                    <i class="${icon}"></i>
+                </a>`;
+            },
         },
     }),
 );
