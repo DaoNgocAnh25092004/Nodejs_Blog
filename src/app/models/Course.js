@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const slug = require('mongoose-slug-updater');
 const mongooseDelete = require('mongoose-delete');
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 // Create a new mongoose schema
 const Schema = mongoose.Schema;
@@ -8,6 +9,7 @@ const Schema = mongoose.Schema;
 // Create a new schema is Course
 const Course = new Schema(
     {
+        _id: { type: Number },
         name: { type: String, required: true, maxLength: 255 },
         description: { type: String, maxLength: 600 },
         image: { type: String, maxLength: 255 },
@@ -15,6 +17,8 @@ const Course = new Schema(
         slug: { type: String, slug: 'name', unique: true },
     },
     {
+        // Disable field _id
+        _id: false,
         // Auto create createdAt & updatedAt fields
         timestamps: true,
     },
@@ -33,6 +37,8 @@ Course.query.sortable = function (req) {
 
 // Add slug to mongoose
 mongoose.plugin(slug);
+
+Course.plugin(AutoIncrement, { inc_field: '_id' });
 
 // Add mongoose-delete to Course
 Course.plugin(mongooseDelete, {

@@ -13,7 +13,7 @@ module.exports = {
             field === sort.column && ['desc', 'asc'].includes(sort.type)
                 ? sort.type
                 : 'default';
-        console.log('🚀 ~ sortType:', sortType);
+
         const icons = {
             default: 'fa-solid fa-arrows-up-down',
             asc: 'fa-solid fa-arrow-up-short-wide',
@@ -26,7 +26,6 @@ module.exports = {
             desc: 'asc',
         };
 
-        console.log('🚀 ~ sortType:', sortType);
         const icon = icons[sortType];
         const type = types[sortType];
 
