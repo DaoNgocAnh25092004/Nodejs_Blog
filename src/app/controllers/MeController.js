@@ -8,16 +8,8 @@ class MeController {
     // [GET] /me/stored/courses
     async storedCourses(req, res, next) {
         try {
-            let courseQuery = Course.find({});
-
-            if (req.query.hasOwnProperty('_sort')) {
-                courseQuery = courseQuery.sort({
-                    [req.query.column]: req.query.type,
-                });
-            }
-
             const [courses, countCourses] = await Promise.all([
-                courseQuery,
+                Course.find({}).sortable(req),
                 Course.countDocumentsWithDeleted({ deleted: true }),
             ]);
 
@@ -33,7 +25,9 @@ class MeController {
     // [GET] /me/trash/courses
     async trashCourses(req, res, next) {
         try {
-            const courses = await Course.findWithDeleted({ deleted: true });
+            const courses = await Course.findWithDeleted({
+                deleted: true,
+            }).sortable(req);
             res.render('me/trash-courses', {
                 courses: multipleMongooseToObject(courses),
             });

@@ -14,8 +14,8 @@ module.exports = function sortMiddleware(req, res, next) {
         // Method 2: Using Object.assign use to merge object from object res.locals._sort on left and object on right
         Object.assign(res.locals._sort, {
             enabled: true,
-            type: req.query.type,
             column: req.query.column,
+            type: req.query.type,
         });
     }
 

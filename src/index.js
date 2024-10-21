@@ -2,7 +2,6 @@ const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const handlebars = require('express-handlebars').engine;
-const moment = require('moment');
 const methodOverride = require('method-override');
 
 // Define path Middleware of function SortMiddleware
@@ -43,28 +42,7 @@ app.engine(
     'hbs',
     handlebars({
         extname: '.hbs',
-        helpers: {
-            sum: (a, b) => a + b,
-            formatDate: (date, format) => moment(date).format(format),
-            sortTable: (field, sort) => {
-                const sortType = field === sort.column ? sort.type : 'default';
-                const icons = {
-                    default: 'fa-solid fa-arrows-up-down',
-                    asc: 'fa-solid fa-arrow-up-short-wide',
-                    desc: 'fa-solid fa-arrow-up-wide-short',
-                };
-                const types = {
-                    default: 'desc',
-                    asc: 'desc',
-                    desc: 'asc',
-                };
-                const icon = icons[sortType];
-                const type = types[sortType];
-                return `<a href="?_sort&column=${field}&type=${type}">
-                    <i class="${icon}"></i>
-                </a>`;
-            },
-        },
+        helpers: require('./helpers/handlebars'),
     }),
 );
 app.set('view engine', 'hbs');

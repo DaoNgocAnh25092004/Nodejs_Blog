@@ -34,7 +34,10 @@
                 <th>Stt</th>
                 <th>Tên khóa học</th>
                 <th>Mô tả</th>
-                <th>Ngày tạo</th>
+                <th>
+                    <span>Ngày tạo</span>
+                    {{{sortTable 'createdAt' _sort}}}
+                </th>
                 <th></th>
             </tr>
         </thead>
